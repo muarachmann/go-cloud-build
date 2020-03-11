@@ -30,7 +30,17 @@ jobs:
         fetch-depth: 1
         path: go/src/github.com/muarachmann/go-cloud-build
 
-    - name: Test and get Go modules
+    - name: Debug
+      run: |
+        pwd
+        echo ${HOME}
+        echo ${GITHUB_WORKSPACE}
+        echo ${GOPATH}
+        echo ${GOROOT}
+      env:
+        GOPATH: /home/runner/work/muarachmann/go
+
+    - name: Test & Get packages
       run: |
         sudo go get -u github.com/golang/glog
         sudo go get -u golang.org/x/net/context
@@ -41,6 +51,8 @@ jobs:
         sudo go get -u github.com/golang/glog
         sudo go get -u github.com/gorilla/sessions
         sudo go test -cover $(go list ./... | grep -v /vendor/)
+      env:
+        GOPATH: /home/runner/work/muarachmann/go
 
     - name: Run go project
       run: go run main.go
