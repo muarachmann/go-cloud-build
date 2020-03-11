@@ -17,9 +17,7 @@ jobs:
         go-version: [1.12]
         platform: [ubuntu-latest]
     runs-on: ${{ matrix.platform }}
-    env:
-        GOPATH: /__w/muarachmann/go/
-
+    
     steps:
     - name: Install Go
       uses: actions/setup-go@v1
