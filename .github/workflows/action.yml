@@ -34,15 +34,15 @@ jobs:
 
     - name: Test and get Go modules
       run: |
-        go get -u github.com/golang/glog
-        go get -u golang.org/x/net/context
-        go get -u golang.org/x/net/context/ctxhttp
-        go get -u github.com/golang/protobuf/proto
-        go get -u github.com/golang/protobuf/protoc-gen-go
-        go get -u github.com/gorilla/mux
-        go get -u github.com/golang/glog
-        go get -u github.com/gorilla/sessions
-        go test -cover $(go list ./... | grep -v /vendor/)
+        sudo go get -u github.com/golang/glog
+        sudo go get -u golang.org/x/net/context
+        sudo go get -u golang.org/x/net/context/ctxhttp
+        sudo go get -u github.com/golang/protobuf/proto
+        sudo go get -u github.com/golang/protobuf/protoc-gen-go
+        sudo go get -u github.com/gorilla/mux
+        sudo go get -u github.com/golang/glog
+        sudo go get -u github.com/gorilla/sessions
+        sudo go test -cover $(go list ./... | grep -v /vendor/)
 
     - name: Run go project
       run: go run main.go
