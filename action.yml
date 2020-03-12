@@ -35,6 +35,19 @@ jobs:
         go get -u github.com/gorilla/sessions  
         go get -u github.com/muarachmann/muarachmann.com/app/controllers
         go get -u github.com/muarachmann/muarachmann.com/app/common
-     
-    - name: Build project
-      run: go build
+  
+  build:
+    name: Build
+    runs-on: ubuntu-latest 
+    needs: [go-tests]
+    steps:
+    - name: Install & Setup Go
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go-version }}
+
+      - name: Check out code
+        uses: actions/checkout@v1
+
+      - name: Build
+        run: go build
