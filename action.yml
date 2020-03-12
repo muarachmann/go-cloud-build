@@ -33,6 +33,8 @@ jobs:
         go get -u github.com/golang/glog
         go get -u github.com/gorilla/mux
         go get -u github.com/gorilla/sessions  
+        go get -u github.com/muarachmann/muarachmann.com/app/controllers
+        go get -u github.com/muarachmann/muarachmann.com/app/common
      
     - name: Run go project
       run: go run main.go
