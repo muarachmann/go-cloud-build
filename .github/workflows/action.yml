@@ -38,5 +38,4 @@ jobs:
         go get -u github.com/muarachmann/muarachmann.com/app/controllers
         go get -u github.com/muarachmann/muarachmann.com/app/common
         go test
-        go build
       
