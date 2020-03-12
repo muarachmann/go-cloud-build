@@ -19,40 +19,20 @@ jobs:
     runs-on: ${{ matrix.platform }}
     
     steps:
-    - name: Install Go
+    - name: Install & Setup Go
       uses: actions/setup-go@v1
       with:
         go-version: ${{ matrix.go-version }}
 
-    - name: Check out code into the Go module directory
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
-        path: go/src/github.com/muarachmann/go-cloud-build
-
-    - name: Debug
-      run: |
-        pwd
-        echo ${HOME}
-        echo ${GITHUB_WORKSPACE}
-        echo ${GOPATH}
-        echo ${GOROOT}
-      env:
-        GOPATH: /home/runner/work/muarachmann/go
+    - name: Checkout code
+      uses: actions/checkout@v1
 
     - name: Test & Get packages
       run: |
-        sudo go get -u github.com/golang/glog
-        sudo go get -u golang.org/x/net/context
-        sudo go get -u golang.org/x/net/context/ctxhttp
-        sudo go get -u github.com/golang/protobuf/proto
-        sudo go get -u github.com/golang/protobuf/protoc-gen-go
-        sudo go get -u github.com/gorilla/mux
-        sudo go get -u github.com/golang/glog
-        sudo go get -u github.com/gorilla/sessions
-        sudo go test -cover $(go list ./... | grep -v /vendor/)
-      env:
-        GOPATH: /home/runner/work/muarachmann/go
-
+        export PATH=$PATH:$(go env GOPATH)/bin # temporary fix. See https://github.com/actions/setup-go/issues/14
+        go get -u github.com/golang/glog
+        go get -u github.com/gorilla/mux
+        go get -u github.com/gorilla/sessions  
+     
     - name: Run go project
       run: go run main.go
