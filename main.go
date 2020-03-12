@@ -8,7 +8,7 @@ import (
 
 	// routing
 	"github.com/gorilla/mux"
-	"github.com/muarachmann/muarachmann.com/app/controllers"
+	"github.com/muarachmann/go-cloud-build/app/controllers"
 )
 
 const (
@@ -52,4 +52,8 @@ func main() {
 
 	log.Fatal(http.ListenAndServe(getPort(), muxRouter))
 
+}
+
+func buildOk() {
+	return "ok"
 }

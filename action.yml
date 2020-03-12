@@ -36,5 +36,8 @@ jobs:
         go get -u github.com/muarachmann/muarachmann.com/app/controllers
         go get -u github.com/muarachmann/muarachmann.com/app/common
      
-    - name: Run go project
-      run: go run main.go
+    - name: Test project
+      run: go test    
+      
+    - name: Build project
+      run: go build
